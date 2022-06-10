@@ -1,4 +1,4 @@
-// By default, no car is selected
+// By default, no file is selected
 document.file = null;
 
 // No recorded file name
@@ -14,14 +14,13 @@ document.filename = null;
 // Default: None
 document.type = 0;
 
-/*
 // setField(id: String, value: Int)
 function setField(id, value)
 {
-    // If car is initialised
+    // If file is initialised
     if (document.file)
     {
-        // Set the field in the car
+        // Set the field in the file
         document.file.setField(id, value);
 
         // Update the value of the input field
@@ -30,7 +29,7 @@ function setField(id, value)
         // Success code
         return 0;
     }
-    else // Car not initialised
+    else // file not initialised
     {
         console.log("Failed to set value of field '" + id + "' to value '" + value + "'! Reason:", err);
 
@@ -61,7 +60,6 @@ function setValue(id, value)
         return 1;
     }
 }
-*/
 
 // resetPage(void): Void
 // Hard reloads the current
@@ -73,32 +71,32 @@ function resetPage()
     window.location.reload(true);
 }
 
-/*
+
 // resetDropdown(id: String): Void
 // If it exists, resets the select
 // element with the given id to the
 // default option.
 function resetDropdown(id)
 {
-    try
-    {
-        // Get the element with the given id
-        let element = document.getElementById(id);
+  try
+  {
+    // Get the element with the given id
+    let element = document.getElementById(id);
 
-        // Clear the inner html of the element
-        element.innerHTML = "";
+    // Clear the inner html of the element
+    element.innerHTML = "";
 
-        // Add the default element to the child
-        element.appendChild(newOption(
-            'o_' + id + '_default', // Element id
-            'default', // Default option
-            'Not Available' // Default text
-        )); 
-    }
-    catch
-    {
-        console.log("Failed: Dropdown '",id,"' does not exist!");
-    }
+    // Add the default element to the child
+    element.appendChild(newOption(
+      'o_' + id + '_default', // Element id
+      'default', // Default option
+      'Not Available' // Default text
+    )); 
+  }
+  catch
+  {
+    console.log("Failed: Dropdown '",id,"' does not exist!");
+  }
 }
 
 // newOption(id: String, value: String, content: String): Element
@@ -106,20 +104,20 @@ function resetDropdown(id)
 // and returns it to the calling process.
 function newOption(id, value, content)
 {
-    // Create a new option
-    let option = document.createElement('option');
+  // Create a new option
+  let option = document.createElement('option');
 
-    // Assign the html content to the innerHTML
-    option.innerHTML = content;
+  // Assign the html content to the innerHTML
+  option.innerHTML = content;
 
-    // Set the option value to the value provided
-    option.value = value;
+  // Set the option value to the value provided
+  option.value = value;
 
-    // Set the option id to the id provided
-    option.id = id;
+  // Set the option id to the id provided
+  option.id = id;
 
-    // Return the created option object
-    return option;
+  // Return the created option object
+  return option;
 }
 
 // setSelected(id: String, value: Boolean): Void
@@ -127,22 +125,22 @@ function newOption(id, value, content)
 // the given element to true. Otherwise, does nothing.
 function setSelected(id, value)
 {
-    try
-    {
-        // Set the element with the given id to the provided value
-        document.getElementById(id).selected = value;
+  try
+  {
+    // Set the element with the given id to the provided value
+    document.getElementById(id).selected = value;
 
-        // Successful assignment
-        return true;
-    }
-    catch(err) // General failure
-    {
-        // Report failure to console
-        console.log("Failed to set selected property of element with id '" + id + "' to value '" + value + "'! Reason:", err);
+    // Successful assignment
+    return true;
+  }
+  catch(err) // General failure
+  {
+    // Report failure to console
+    console.log("Failed to set selected property of element with id '" + id + "' to value '" + value + "'! Reason:", err);
 
-        // Assignment failed
-        return false;
-    }
+    // Assignment failed
+    return false;
+  }
 }
 
 // setDisabled(id: String, value: Boolean)
@@ -150,24 +148,24 @@ function setSelected(id, value)
 // the given element to true. Otherwise, does nothing.
 function setDisabled(id, value)
 {
-    try
-    {
-        // Set the element with the given id to the provided value
-        document.getElementById(id).disabled = value;
+  try
+  {
+    // Set the element with the given id to the provided value
+    document.getElementById(id).disabled = value;
 
-        // Successful assignment
-        return true;
-    }
-    catch(err) // General failure
-    {
-        // Report failure to console
-        console.log("Failed to set disabled property of element with id '" + id + "' to value '" + value + "'! Reason:", err);
+    // Successful assignment
+    return true;
+  }
+  catch(err) // General failure
+  {
+    // Report failure to console
+    console.log("Failed to set disabled property of element with id '" + id + "' to value '" + value + "'! Reason:", err);
 
-        // Assignment failed
-        return false;
-    }
+    // Assignment failed
+    return false;
+  }
 }
-*/
+
 
 // handleDownload(Void): Void
 // Handle the save file download from the site
@@ -217,7 +215,7 @@ function handleDownload()
         setTimeout(() => window.URL.revokeObjectURL(url), 1000)
     }
 
-    // If a car has been uploaded
+    // If a file has been uploaded
     if (this.document.file !== null)
     {
         // Get the UINT8 array, convert to blob data and download the file
@@ -227,7 +225,7 @@ function handleDownload()
             'application/octet-stream' // MIMETYPE for Binary Files
         );
     }
-    else // No car uploaded
+    else // No file uploaded
     {
         // Do nothing
     }
@@ -254,7 +252,7 @@ function handleUpload()
 
         try
         {
-          // Null out the existing car object
+          // Null out the existing file object
           document.file = null;
 
           // Disable all of the select tags
@@ -263,38 +261,36 @@ function handleUpload()
           // Hide all of the editor divs
           hideEditorDivs();
 
-          // Get the map from the buffer, and 
-          // create a new car using the map
-          let file = new Car(
-            new Map(e.target.result)  // Binary data of the car file
-          );
+          // Get the file extension of the filename
+          let extension = myString = document.filename.substring(document.filename.indexOf('.')+1)
 
           // Switch on the file type
-          switch(document.filename.split('.')[-1])
+          switch(extension)
           {
             case 'ministick': // Mini Sticker
               hideElement('d_ministick', false);
-              document.type = 1;
-            break;
-            case 'settings': // Settings
-              hideElement('d_settings', false);
               document.type = 2;
             break;
             case 'gtwing': // GT Wing
               hideElement('d_gtwing', false);
-              document.type = 3;
+              document.type = 1;
             break;
+            default:
+              console.log("Unknown extension:", extension);
+              break;
           }
 
-          // If car is created successfully, assign to the document
-          document.file = file;
+          // Get the map from the buffer, and create a new file using the map
 
-          // If a car is loaded
+          // If file is created successfully, assign to the document
+          document.file = new FileObject(
+            new Map(e.target.result), // Binary data of thefile
+            document.type // Type of file
+          );
+
+          // If a file is loaded
           if (document.file)
           {                    
-            // Update the selected game on the form
-            setSelected('o_' + document.file.getGameId(), true);
-
             // Loop over all of the supported fields
             document.file.getFields().forEach(field => {
 
@@ -341,9 +337,7 @@ function handleUpload()
                   select.appendChild(newOption(o_id, option.id, option.name));
                 }); 
 
-                // Set the selected option 
-                // to the current option
-
+                // Set the current value of the file to the currently selected element
                 setSelected('o_' + field + '_' + document.file.getField(field), true);
 
                 // Enable the drop-down for the select field
@@ -352,9 +346,9 @@ function handleUpload()
             });
           }
         }
-        catch(err) // Fails to create car object
+        catch(err) // Fails to create file object
         {
-          // Document car is null
+          // Document file is null
           document.file = null;
           document.filename = null;
 
@@ -381,32 +375,12 @@ function randomiseField(field)
   // Get the random value from the field
   let rand = locations.getRandom(field);
 
-  // Set the value of the car to the random field
+  // Set the value of the file to the random field
   document.file.setField(field, rand.id);
 
   // Set the selected drop-down option to the new setting
   setSelected('o_' + field + '_' + rand.id, true);
 }
-
-/*
-// Initial Setup
-Object.keys(HEXTABLE).forEach(id => {
-
-    // Get the game selected drop-down from the form
-    let select = document.getElementById('s_game');
-
-    // Get the name of the game
-    value = HEXTABLE[id].name;
-
-    // Add an option element to the drop-down with the id and value
-    select.appendChild(newOption(
-        'o_' + id, // ID for the option
-        id, // Value for the option
-        value // Text for the option
-    ));
-});
-*/
-
 
 // hideElement(id: String): Void
 // Given an element id, hides the
@@ -444,7 +418,6 @@ function hideEditorDivs()
 {
   // Hide the editor divs
   hideElement('d_ministick');
-  hideElement('d_settings');
   hideElement('d_gtwing');
 }
 
@@ -459,8 +432,16 @@ function disableAllWithTag(tag)
   // Loop over all of the selected elements
   Object.keys(elements).forEach(element => {
        
-    // Disable the selected element
-    setDisabled(elements[element].id, true);
+    // Verify if the element has an id
+    let id = elements[element].id;
+
+    // Id is valid
+    if (id)
+    {
+      // Disable the selected element
+      setDisabled(id, true);
+    }
+
   });
 }
 

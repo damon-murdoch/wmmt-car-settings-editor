@@ -75,9 +75,14 @@
         <table class='table table-dark' id='t_upload'>
           <thead class='thead thead-dark'>
             <tr>
-              <th colspan=5>
+              <th>
                 Option
               </th>
+              <td colspan="4">
+                <i>
+                  Supported Files: CARCODE.gtwing, CARCODE.ministick
+                </i>
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -106,19 +111,6 @@
             </tr>
             <tr>
               <th>
-                Game Selected
-              </th>
-              <td colspan=4>
-                <select id='s_game' disabled>
-                  <!-- Populated by index.js -->
-                  <option>
-                    No Game Selected
-                  </option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>
                 Filetype Selected
               </th>
               <td colspan=4>
@@ -134,149 +126,6 @@
         </table>
       </div>
       <div id='d_editor'>
-        <div id='d_settings'>
-          <h4 class='text-center'>
-            Settings
-          </h4>
-          <h6 class='text-center'>
-            Supported by 5DX+ Only. MT5/MT6 Support coming soon.
-          </h6>
-          <table class='table table-dark' id='t_upload'>
-            <thead class='thead thead-dark'>
-              <tr>
-                <th>
-                  Property
-                </th>
-                <th colspan=5>
-                  Selection
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>
-                  On/Off Switches
-                </th>
-                <td>
-                  <label for='c_view'> Transmission </label>
-                  <input name="c_view" id="c_view" type='checkbox' onChange="setView(checked)" disabled>
-                </td>
-                <td>
-                  <label for='c_transmission'> Transmission </label>
-                  <input name="c_transmission" id="c_transmission" type='checkbox' onChange="setTransmission(checked)" disabled>
-                </td>
-                <td>
-                  <label for='c_retire'> Retire </label>
-                  <input name="c_retire" id="c_retire" type='checkbox' onChange="setRetire(checked)" disabled>
-                </td>
-                <td>
-                  <label for='c_navi_map'> Navi Map </label>
-                  <input name="c_navi_map" id="c_navi_map" type='checkbox' onChange="setNaviMap(checked)">
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Unlockables
-                </th>
-                <th>
-                  Racing Meter
-                </th>
-                <td>
-                  <select>
-                    <option>
-                      Default
-                    </option>
-                  </select>
-                </td>
-                <th>
-                  Soundtrack
-                </th>
-                <td>
-                  <select>
-                    <option>
-                      Default
-                    </option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Nameplate
-                </th>
-                <th>
-                  Type
-                </th>
-                <td>
-                  <select>
-                    <option>
-                      Default
-                    </option>
-                  </select>
-                </td>
-                <th>
-                  Colour
-                </th>
-                <td>
-                  <select>
-                    <option>
-                      Default
-                    </option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Versus Frame
-                </th>
-                <th>
-                  Type
-                </th>
-                <td>
-                  <select>
-                    <option>
-                      Default
-                    </option>
-                  </select>
-                </td>
-                <th>
-                  Colour
-                </th>
-                <td>
-                  <select>
-                    <option>
-                      Default
-                    </option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Other/Unused
-                </th>
-                <th>
-                  BGM Volume
-                </th>
-                <td>
-                  <select disabled>
-                    <option>
-                      Not Used
-                    </option>
-                  </select>
-                </td>
-                <th>
-                  Terminal BG
-                </th>
-                <td>
-                  <select disabled>
-                    <option>
-                      Not Used
-                    </option>
-                  </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
         <div id='d_gtwing'>
           <h4 class='text-center'>
             GT Wing
@@ -298,21 +147,13 @@
             <tbody>
               <tr>
                 <th>
-                  Custom Wing Toggle
-                </th>
-                <td colspan="4">
-                  <input name="custom_wing-switch" id="c_custom_wing-switch" type='checkbox' onChange="SetCustomWingToggle(value)">
-                </td>
-              </tr>
-              <tr>
-                <th>
                   Pillar
                 </th>
                 <th>
                   Type
                 </th>
                 <td>
-                  <select name="s_pillar_type" id="s_pillar_type" onChange="setPillarType(value)">
+                  <select name="s_pillar_type" id="s_pillar_type" onChange="setField('pillar_type', value)">
                     <option id='o_default'>
                       Default
                     </option>
@@ -322,7 +163,7 @@
                   Material
                 </th>
                 <td>
-                  <select name="s_pillar_material" id="s_pillar_material" onChange="setPillarMaterial(value)">
+                  <select name="s_pillar_material" id="s_pillar_material" onChange="setField('pillar_material', value)">
                     <option id='o_default'>
                       Default
                     </option>
@@ -337,7 +178,7 @@
                   Type
                 </th>
                 <td>
-                  <select name="s_main_wing_type" id="s_main_wing_type" onChange="setMainWingType(value)">
+                  <select name="s_main_wing_type" id="s_main_wing_type" onChange="setField('main_wing_type', value)">
                     <option id='o_default'>
                       Default
                     </option>
@@ -347,7 +188,7 @@
                   Colour
                 </th>
                 <td>
-                  <select name="s_main_wing_colour" id="s_main_wing_colour" onChange="setMainWingColour(value)">
+                  <select name="s_main_wing_colour" id="s_main_wing_colour" onChange="setField('main_wing_colour', value)">
                     <option id='o_default'>
                       Default
                     </option>
@@ -362,7 +203,7 @@
                   Wing Tip Style
                 </th>
                 <td>
-                  <select name="s_wing_tip_style" id="s_wing_tip_style" onChange="setWingTipStyle(value)">
+                  <select name="s_wing_tip_type" id="s_wing_tip_type" onChange="setField('wing_tip_type', value)">
                     <option id='o_default'>
                       Default
                     </option>
@@ -372,7 +213,7 @@
                   Wing Material
                 </th>
                 <td>
-                  <select name="s_wing_material" id="s_wing_material" onChange="setWingMaterial(value)">
+                  <select name="s_wing_material" id="s_wing_material" onChange="setField('wing_material', value)">
                     <option id='o_default'>
                       Default
                     </option>
@@ -406,14 +247,14 @@
                   Sticker 1
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(1, value)">
+                  <select name="s_sticker_1_type" id="s_sticker_1_type" onChange="setField('sticker_1_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(1, value)">
+                  <select name="s_sticker_1_colour" id="s_sticker_1_colour" onChange="setField('sticker_1_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -425,14 +266,14 @@
                   Sticker 2
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(2, value)">
+                  <select name="s_sticker_2_type" id="s_sticker_2_type" onChange="setField('sticker_2_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(2, value)">
+                  <select name="s_sticker_2_colour" id="s_sticker_2_colour" onChange="setField('sticker_2_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -444,14 +285,14 @@
                   Sticker 3
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(3, value)">
+                  <select name="s_sticker_3_type" id="s_sticker_3_type" onChange="setField('sticker_3_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(3, value)">
+                  <select name="s_sticker_3_colour" id="s_sticker_3_colour" onChange="setField('sticker_3_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -463,14 +304,14 @@
                   Sticker 4
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(4, value)">
+                  <select name="s_sticker_4_type" id="s_sticker_4_type" onChange="setField('sticker_4_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(4, value)">
+                  <select name="s_sticker_4_colour" id="s_sticker_4_colour" onChange="setField('sticker_4_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -482,14 +323,14 @@
                   Sticker 5
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(5, value)">
+                  <select name="s_sticker_5_type" id="s_sticker_5_type" onChange="setField('sticker_5_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(5, value)">
+                  <select name="s_sticker_5_colour" id="s_sticker_5_colour" onChange="setField('sticker_5_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -501,14 +342,14 @@
                   Sticker 6
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(6, value)">
+                  <select name="s_sticker_6_type" id="s_sticker_6_type" onChange="setField('sticker_6_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(6, value)">
+                  <select name="s_sticker_6_colour" id="s_sticker_6_colour" onChange="setField('sticker_6_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -520,14 +361,14 @@
                   Sticker 7
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(7, value)">
+                  <select name="s_sticker_7_type" id="s_sticker_7_type" onChange="setField('sticker_7_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(7, value)">
+                  <select name="s_sticker_7_colour" id="s_sticker_7_colour" onChange="setField('sticker_7_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -539,14 +380,14 @@
                   Sticker 8
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(8, value)">
+                  <select name="s_sticker_8_type" id="s_sticker_8_type" onChange="setField('sticker_8_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(8, value)">
+                  <select name="s_sticker_8_colour" id="s_sticker_8_colour" onChange="setField('sticker_8_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -558,14 +399,14 @@
                   Sticker 9
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(9, value)">
+                  <select name="s_sticker_9_type" id="s_sticker_9_type" onChange="setField('sticker_9_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(9, value)">
+                  <select name="s_sticker_9_colour" id="s_sticker_9_colour" onChange="setField('sticker_9_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -577,14 +418,14 @@
                   Sticker 10
                 </th>
                 <td>
-                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(10, value)">
+                  <select name="s_sticker_10_type" id="s_sticker_10_type" onChange="setField('sticker_10_type', value)">
                     <option id='o_default'>
                       Mini Sticker Style
                     </option>
                   </select>
                 </td>
                 <td>
-                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(10, value)">
+                  <select name="s_sticker_10_colour" id="s_sticker_10_colour" onChange="setField('sticker_10_colour', value)">
                     <option id='o_default'>
                       Mini Sticker Colour
                     </option>
@@ -598,8 +439,12 @@
       <div>
         <!-- File buffer reader source file -->
   
-        <!-- Maximum Tune 6 Data -->
+        <!-- Data File -->
         <script type='text/javascript' src='data/hextable.js'>
+        </script>
+
+        <!-- Locations Class File -->
+        <script type='text/javascript' src='data/locations.js'>
         </script>
 
         <!--
@@ -610,10 +455,9 @@
         <script type='text/javascript' src='src/class/map.js'>
         </script>
   
-        <!-- File buffer reader source file
-        <script type='text/javascript' src='src/class/car.js'>
+        <!-- File buffer reader source file -->
+        <script type='text/javascript' src='src/class/file.js'>
         </script>
-         -->
   
         <!-- Main program source file -->
         <script type='text/javascript' src='index.js'>

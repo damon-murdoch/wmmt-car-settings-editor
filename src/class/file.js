@@ -1,4 +1,4 @@
-class File 
+class FileObject 
 {
     // Constructor
     // Requires a map to get info from
@@ -13,15 +13,11 @@ class File
         // Get the hex table info for the game selected
         switch(fileType)
         {
-            case 1: // Settings
-                hexInfo = SETTINGS;
-                break;
-
-            case 2: // GT Wing
+            case 1: // Settings`
                 hexInfo = GTWING;
                 break;
-            
-            case 3: // Mini Sticker
+
+            case 2: // Mini Sticker
                 hexInfo = MINI_STICKER;
                 break;
 
@@ -31,8 +27,8 @@ class File
 
         // Use the location data for maximum tune 6
         this.locations = new Hextable(
-            hexInfo.location, // Locations
-            hexInfo.value // Values
+            hexInfo.locations, // Locations
+            hexInfo.values // Values
         )
     }
 

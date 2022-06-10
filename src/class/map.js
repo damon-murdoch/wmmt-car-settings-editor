@@ -131,7 +131,7 @@ class Map
     getElementAt(y, x)
     {
         // If the point is valid
-        if(this.verifyPoint(x,y))
+        if(this.verifyPoint(y,x))
         {
             // Return the element in the map
             return this.map[y][x];
@@ -148,7 +148,7 @@ class Map
     setElementAt(y, x, n)
     {
         // If the point is valid
-        if(this.verifyPoint(x,y))
+        if(this.verifyPoint(y,x))
         {
             // Set the element in the map
             this.map[y][x] = n;
@@ -166,7 +166,7 @@ class Map
     getDecimalAt(y, x)
     {
         // If the point is valid
-        if(this.verifyPoint(x,y))
+        if(this.verifyPoint(y,x))
         {
             // Return the element in the map, converted to decimal
             return parseInt(this.map[y][x], 16).toString();
@@ -185,7 +185,7 @@ class Map
     setDecimalAt(y, x, n)
     {
         // If the point is valid
-        if(this.verifyPoint(x,y))
+        if(this.verifyPoint(y,x))
         {
             // Set the element in the map
             this.map[y][x] = parseInt(n).toString(16).toUpperCase().padStart(2, '0');
