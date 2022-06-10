@@ -126,31 +126,51 @@ const GTWING = {
     // Pillar
     
     "pillar_type": {
-      "00": "Default"
-      // lots more but I cbf rn
+      "00": "None (No GT Wing)",
+      "01": "Tall Outside Pillars",
+      "02": "Tall Inside Pillars",
+      "03": "Mid Outside Pillars",
+      "04": "Mid Inside Pillars",
+      "05": "Short Outside Pillars",
+      "06": "Short Inside Pillars"
     },
     "pillar_material": {
-      "00": "Silver",
-      "01": "Black"
-      // lots more but I cbf rn
+      "00": "Black",
+      "01": "Silver"
     },
 
     // Main Wing
     
     "main_wing_type": {
-      "00": "Default"
-      // lots more but I cbf rn
+      "00": "None (No GT Wing)",
+      "01": "Standard Wing",
+      "02": "Curved Wing",
+      "03": "3D Wing",
+      "04": "Angled Wing",
+      "05": "Double Wing",
+      "06": "Triple Wing"
     },
     "main_wing_colour": {
-      "00": "Default"
-      // lots more but I cbf rn
+      "00": "Red",
+      "01": "Orange",
+      "02": "Yellow",
+      "03": "Green",
+      "04": "Purple",
+      "05": "Light Blue",
+      "06": "Blue",
+      "07": "Black",
+      "08": "Silver",
+      "09": "White"
     },
 
     // Decoration
     
     "wing_tip_type": {
-      "00": "Default"
-      // lots more but I cbf rn
+      "00": "None (No GT Wing)",
+      "01": "Standard",
+      "02": "Curved",
+      "03": "Large",
+      "04": "Large Curved"
     },
     "wing_material": {
       "00": "Glossy",
