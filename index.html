@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+  <head>
+    <title>
+      Maximum Tune File Editor
+    </title>
+
+    <!-- Bootstrap Stylesheet -->
+    <link rel='stylesheet' href='redist/bootstrap.min.css'>
+  </head>
+  <body class='text-light bg-dark'>
+
+    <!-- Container keeping page the correct width -->
+    <div class='container' style='width: 100%; max-width: 960px;'>
+      <div id='d_cover'>
+        <img src='img/cover.png' style='max-width:100%; max-height:100%; object-fit: fill;'>
+      </div>
+      <div id='d_header' class='text-center'>
+        <h1>
+          <!-- Wangan Midnight Maximum Tune 6 Car Editor -->
+          Maximum Tune Multi-Purpose File Editor
+        </h1>
+        <h3>
+          WMMT5DX+ Only! WMMT5/6 Support coming soon!
+        </h3>
+        <h4>
+          TeknoParrot Only (No JConfig)
+        </h4>
+        <h5>
+          Tool by 
+          <a href='https://www.twitter.com/SirScrubbington'>
+            SirScrubbington
+          </a>
+        </h5>
+        <h6>
+          <i>
+            Features not working in-game yet? Try my latest OpenParrot test release <a href='https://github.com/damon-murdoch/OpenParrot'>here</a> :)
+          </i>
+        </h6>
+        <h6>
+          <i>
+            Encounter a bug? Report it
+            <a target = '_blank' href='https://www.github.com/damon-murdoch/wmmt-car-editor/issues'>
+              here
+            </a>
+          </i>
+        </h6>
+      </div>
+      <div id='d_input' class='text-center'>
+        <table class='table table-dark' id='t_nav'>
+          <thead>
+            <tr>
+              <th colspan='2'>
+                Check out my other editors
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <a href="https://www.dragapult.xyz/wmmt-car-editor">
+                  WMMT5/5DX+/6 Car File Editor
+                </a>
+              </td>
+              <td>
+                <a href="https://www.dragapult.xyz/wmmt-story-editor">
+                  WMMT5/5DX+/6 Story File Editor
+                </a>
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div id='d_upload'>
+        <table class='table table-dark' id='t_upload'>
+          <thead class='thead thead-dark'>
+            <tr>
+              <th colspan=5>
+                Option
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>
+                Select File
+              </th>
+              <td>
+                <input name="file" type="file" id="i_file"/>
+              </td>
+              <td>
+                <a href='#' onClick='handleUpload()'>
+                  Upload File
+                </a>
+              </td>
+              <td>
+                <a href='#' onClick='handleDownload()'>
+                  Download File
+                </a>
+              </td>
+              <td>
+                <a href='#' onClick='resetPage()'>
+                  Reset Form
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Game Selected
+              </th>
+              <td colspan=4>
+                <select id='s_game' disabled>
+                  <!-- Populated by index.js -->
+                  <option>
+                    No Game Selected
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Filetype Selected
+              </th>
+              <td colspan=4>
+                <select id='s_type' disabled>
+                  <!-- Populated by index.js -->
+                  <option>
+                    No Type Selected
+                  </option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id='d_editor'>
+        <div id='d_settings'>
+          <h4 class='text-center'>
+            Settings
+          </h4>
+          <h6 class='text-center'>
+            Supported by 5DX+ Only. MT5/MT6 Support coming soon.
+          </h6>
+          <table class='table table-dark' id='t_upload'>
+            <thead class='thead thead-dark'>
+              <tr>
+                <th>
+                  Property
+                </th>
+                <th colspan=5>
+                  Selection
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                  On/Off Switches
+                </th>
+                <td>
+                  <label for='c_view'> Transmission </label>
+                  <input name="c_view" id="c_view" type='checkbox' onChange="setView(checked)" disabled>
+                </td>
+                <td>
+                  <label for='c_transmission'> Transmission </label>
+                  <input name="c_transmission" id="c_transmission" type='checkbox' onChange="setTransmission(checked)" disabled>
+                </td>
+                <td>
+                  <label for='c_retire'> Retire </label>
+                  <input name="c_retire" id="c_retire" type='checkbox' onChange="setRetire(checked)" disabled>
+                </td>
+                <td>
+                  <label for='c_navi_map'> Navi Map </label>
+                  <input name="c_navi_map" id="c_navi_map" type='checkbox' onChange="setNaviMap(checked)">
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Unlockables
+                </th>
+                <th>
+                  Racing Meter
+                </th>
+                <td>
+                  <select>
+                    <option>
+                      Default
+                    </option>
+                  </select>
+                </td>
+                <th>
+                  Soundtrack
+                </th>
+                <td>
+                  <select>
+                    <option>
+                      Default
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Nameplate
+                </th>
+                <th>
+                  Type
+                </th>
+                <td>
+                  <select>
+                    <option>
+                      Default
+                    </option>
+                  </select>
+                </td>
+                <th>
+                  Colour
+                </th>
+                <td>
+                  <select>
+                    <option>
+                      Default
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Versus Frame
+                </th>
+                <th>
+                  Type
+                </th>
+                <td>
+                  <select>
+                    <option>
+                      Default
+                    </option>
+                  </select>
+                </td>
+                <th>
+                  Colour
+                </th>
+                <td>
+                  <select>
+                    <option>
+                      Default
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Other/Unused
+                </th>
+                <th>
+                  BGM Volume
+                </th>
+                <td>
+                  <select disabled>
+                    <option>
+                      Not Used
+                    </option>
+                  </select>
+                </td>
+                <th>
+                  Terminal BG
+                </th>
+                <td>
+                  <select disabled>
+                    <option>
+                      Not Used
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id='d_gtwing'>
+          <h4 class='text-center'>
+            GT Wing
+          </h4>
+          <h6 class='text-center'>
+            Supported by 5DX+ Only. MT5/MT6 Support coming soon.
+          </h6>
+          <table class='table table-dark' id='t_upload'>
+            <thead class='thead thead-dark'>
+              <tr>
+                <th>
+                  Property
+                </th>
+                <th colspan=4>
+                  Selection
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                  Custom Wing Toggle
+                </th>
+                <td colspan="4">
+                  <input name="custom_wing-switch" id="c_custom_wing-switch" type='checkbox' onChange="SetCustomWingToggle(value)">
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Pillar
+                </th>
+                <th>
+                  Type
+                </th>
+                <td>
+                  <select name="s_pillar_type" id="s_pillar_type" onChange="setPillarType(value)">
+                    <option id='o_default'>
+                      Default
+                    </option>
+                  </select>
+                </td>
+                <th>
+                  Material
+                </th>
+                <td>
+                  <select name="s_pillar_material" id="s_pillar_material" onChange="setPillarMaterial(value)">
+                    <option id='o_default'>
+                      Default
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Main Wing
+                </th>
+                <th>
+                  Type
+                </th>
+                <td>
+                  <select name="s_main_wing_type" id="s_main_wing_type" onChange="setMainWingType(value)">
+                    <option id='o_default'>
+                      Default
+                    </option>
+                  </select>
+                </td>
+                <th>
+                  Colour
+                </th>
+                <td>
+                  <select name="s_main_wing_colour" id="s_main_wing_colour" onChange="setMainWingColour(value)">
+                    <option id='o_default'>
+                      Default
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Decoration
+                </th>
+                <th>
+                  Wing Tip Style
+                </th>
+                <td>
+                  <select name="s_wing_tip_style" id="s_wing_tip_style" onChange="setWingTipStyle(value)">
+                    <option id='o_default'>
+                      Default
+                    </option>
+                  </select>
+                </td>
+                <th>
+                  Wing Material
+                </th>
+                <td>
+                  <select name="s_wing_material" id="s_wing_material" onChange="setWingMaterial(value)">
+                    <option id='o_default'>
+                      Default
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id='d_ministick' display=none>
+          <h4 class='text-center'>
+            Mini Stickers
+          </h4>
+          <h6 class='text-center'>
+            Supported by 5DX+ Only. MT5 Support coming soon. Not available in MT6 onward.
+          </h6>
+          <table class='table table-dark' id='t_upload'>
+            <thead class='thead thead-dark'>
+              <tr>
+                <th>
+                  Sticker Number
+                </th>
+                <th colspan=2>
+                  Sticker Options
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr> <!-- Sticker 1 -->
+                <th>
+                  Sticker 1
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(1, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(1, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr> <!-- Sticker 2 -->
+                <th>
+                  Sticker 2
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(2, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(2, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr> <!-- Sticker 3 -->
+                <th>
+                  Sticker 3
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(3, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(3, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr> <!-- Sticker 4 -->
+                <th>
+                  Sticker 4
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(4, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(4, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr> <!-- Sticker 5 -->
+                <th>
+                  Sticker 5
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(5, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(5, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr> <!-- Sticker 6 -->
+                <th>
+                  Sticker 6
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(6, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(6, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr> <!-- Sticker 7 -->
+                <th>
+                  Sticker 7
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(7, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(7, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr> <!-- Sticker 1 -->
+                <th>
+                  Sticker 8
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(8, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(8, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr> <!-- Sticker 9 -->
+                <th>
+                  Sticker 9
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(9, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(9, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr> <!-- Sticker 10 -->
+                <th>
+                  Sticker 10
+                </th>
+                <td>
+                  <select name="s_ministick_style" id="s_ministick_style" onChange="setMiniStickerStyle(10, value)">
+                    <option id='o_default'>
+                      Mini Sticker Style
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select name="s_ministick_colour" id="s_ministick_colour" onChange="setMiniStickerColour(10, value)">
+                    <option id='o_default'>
+                      Mini Sticker Colour
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <!-- File buffer reader source file -->
+  
+        <!-- Maximum Tune 6 Data -->
+        <script type='text/javascript' src='data/hextable.js'>
+        </script>
+
+        <!--
+          SOURCE FILES
+        -->
+  
+        <!-- Maximum Tune Specific source file -->
+        <script type='text/javascript' src='src/class/map.js'>
+        </script>
+  
+        <!-- File buffer reader source file
+        <script type='text/javascript' src='src/class/car.js'>
+        </script>
+         -->
+  
+        <!-- Main program source file -->
+        <script type='text/javascript' src='index.js'>
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
